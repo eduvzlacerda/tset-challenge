@@ -11,5 +11,5 @@ data class CalculationResult(
     val id: Int,
 
     @Column(name = "result")
-    val result: Float
+    val result: Double
 )

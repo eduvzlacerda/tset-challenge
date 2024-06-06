@@ -22,7 +22,7 @@ class CalculationRestController(
         return calculationId
     }
     @GetMapping("/result/{calculation-id}")
-    fun fetchResultById(@PathVariable("calculation-id") calculationId : Int) : Float?{
+    fun fetchResultById(@PathVariable("calculation-id") calculationId : Int) : Double?{
        return calculationService.getCalculationResultById(calculationId)
     }
 

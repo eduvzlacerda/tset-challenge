@@ -15,6 +15,9 @@ data class CalculationParametersDTO(
     val timesPerYear: Int,
 
     @field:Positive(message = "Argument 'years' is mandatory a must be greater than zero")
-    val years: Int
+    val years: Int ,
+
+    @field:Positive(message = "Argument 'regularContribution' must be greater than zero")
+    val monthlyContribution : Double?
 )
 
