@@ -3,6 +3,7 @@ package com.interview.tsetchallenge
 import com.interview.tsetchallenge.model.CalculationParametersDTO
 import com.interview.tsetchallenge.model.CalculationResult
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 import kotlin.math.pow
 
@@ -10,7 +11,7 @@ import kotlin.math.pow
 class CalculationService(
     private val calculationResultRepository: CalculationResultRepository
 ){
-   //@Async
+    @Async
     fun runCalculationAndStoreResult(calculationParameters: CalculationParametersDTO, calculationId : Int){
 
         val result = this.runFutureValueCalculation(calculationParameters)
