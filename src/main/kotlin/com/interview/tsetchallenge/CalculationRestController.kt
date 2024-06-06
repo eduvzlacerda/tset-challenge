@@ -19,7 +19,7 @@ class CalculationRestController(
        @Valid @RequestBody calculationParameters : CalculationParametersDTO
     ):Int{
         val calculationId = this.generateRandomId()
-        calculationService.runCalculationAndStoreResult(calculationParameters,calculationId)
+        calculationService.runCalculationAndStoreResultAsync(calculationParameters,calculationId)
         return calculationId
     }
 

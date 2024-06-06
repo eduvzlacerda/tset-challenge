@@ -12,7 +12,7 @@ class CalculationService(
     private val calculationResultRepository: CalculationResultRepository
 ){
     @Async
-    fun runCalculationAndStoreResult(calculationParameters: CalculationParametersDTO, calculationId : Int){
+    fun runCalculationAndStoreResultAsync(calculationParameters: CalculationParametersDTO, calculationId : Int){
 
         val result = this.runFutureValueCalculation(calculationParameters)
         val roundedResult = String.format("%.2f", result).toDouble()
