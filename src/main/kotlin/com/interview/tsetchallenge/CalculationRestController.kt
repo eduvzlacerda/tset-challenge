@@ -1,5 +1,6 @@
 package com.interview.tsetchallenge
 
+import com.interview.tsetchallenge.exceptionsHandeling.CalculationResultNotFoundException
 import com.interview.tsetchallenge.model.CalculationParametersDTO
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
@@ -21,9 +22,14 @@ class CalculationRestController(
         calculationService.runCalculationAndStoreResult(calculationParameters,calculationId)
         return calculationId
     }
+
     @GetMapping("/result/{calculation-id}")
-    fun fetchResultById(@PathVariable("calculation-id") calculationId : Int) : Double?{
-       return calculationService.getCalculationResultById(calculationId)
+    fun fetchResultById(@PathVariable("calculation-id") calculationId: Int): Double {
+        return calculationService.getCalculationResultById(calculationId)
+            ?: throw CalculationResultNotFoundException(
+                "Calculation with id $calculationId not found. " +
+                    "Consider waiting for the calculation ti be finished"
+            )
     }
 
     private fun generateRandomId():Int{

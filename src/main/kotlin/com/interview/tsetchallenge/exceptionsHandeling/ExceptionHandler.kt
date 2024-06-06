@@ -1,4 +1,4 @@
-package com.interview.tsetchallenge
+package com.interview.tsetchallenge.exceptionsHandeling
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -14,5 +14,10 @@ class ExceptionHandler {
     fun handleValidationExceptions(ex: MethodArgumentNotValidException): ResponseEntity<String> {
         val errorMessage = ex.bindingResult.fieldErrors.firstOrNull()?.defaultMessage ?: "Invalid value"
         return ResponseEntity(errorMessage,HttpStatus.BAD_REQUEST)
+    }
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun handleNotFoundExceptions(ex: CalculationResultNotFoundException): ResponseEntity<String> {
+        return ResponseEntity(ex.message,HttpStatus.NOT_FOUND)
     }
 }
