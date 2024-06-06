@@ -1,19 +1,20 @@
 package com.interview.tsetchallenge.model
 
-import jakarta.validation.constraints.Min
+import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Positive
-import org.springframework.cglib.proxy.InterfaceMaker
 
 data class CalculationParametersDTO(
-    @field:Positive(message = "Principal must be greater than zero")
+
+    @field:Positive(message = "Argument 'Principal' is mandatory and must be greater than zero")
     val principal: Double,
 
+    @field:NotNull(message = "Argument 'annualInterestRate' is mandatory")
     val annualInterestRate: Double,
 
-    @field:Min(value = 1, message = "timesPerYear must be at least 1")
+    @field:Positive(message = "Argument 'timesPerYear' is mandatory and must be greater than zero")
     val timesPerYear: Int,
 
-    @field:Positive(message = "years must be greater than zero")
+    @field:Positive(message = "Argument 'years' is mandatory a must be greater than zero")
     val years: Int
 )
 
